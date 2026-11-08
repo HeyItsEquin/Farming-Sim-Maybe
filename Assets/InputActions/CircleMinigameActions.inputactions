@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "name": "CircleMinigameActions",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "d7a9a684-93e1-464e-aab6-55356f72a635",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "82fcce7d-269b-47f6-bfa2-754970e8268b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5defece4-70cc-44f5-a103-c6894368c152",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
