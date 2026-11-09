@@ -1,0 +1,13 @@
+#Root {
+    flex-grow: 1;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#ButtonsContainer Button
+{
+    padding: 6px;
+    font-size: 14px;
+    margin: 4px 0px 4px 0px;
+}

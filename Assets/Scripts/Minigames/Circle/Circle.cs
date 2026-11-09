@@ -43,6 +43,8 @@ public class Circle : MonoBehaviour
 
     public int hitResult = 0;
 
+    public float Radius => outerSprite.bounds.size.x/2;
+
     public Action<Circle> destroyed;
 
     void Awake()
@@ -123,6 +125,8 @@ public class Circle : MonoBehaviour
 
     void OnClick(InputValue input)
     {
+        if (!input.isPressed) return;
+
         var mousePos = Mouse.current.position.ReadValue();
         if (SelfContainsPoint(mousePos))
         {
@@ -163,12 +167,11 @@ public class Circle : MonoBehaviour
 
     bool SelfContainsPoint(Vector2 p)
     {
-        var radius = outerSprite.bounds.size.x/2;
         var center = new Vector2(transform.position.x,transform.position.y);
 
         var pn = Camera.main.ScreenToWorldPoint(p);
 
-        return Vector2.Distance(pn,center) < radius;
+        return Vector2.Distance(pn,center) < Radius;
     }
 
     float GetCurrentAlpha()

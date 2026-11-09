@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Documents/Stylesheets/CircleMinigame.uss?fileID=7433441132597879392&amp;guid=e1ec0c233d04acf73a6ee2335c4bd094&amp;type=3#CircleMinigame" />
+    <ui:VisualElement name="Root" style="flex-grow: 1; align-items: center; flex-direction: column; align-self: auto; align-content: auto; justify-content: center;">
+        <ui:VisualElement name="HealthBarContainer" style="flex-grow: 0; align-self: center; flex-direction: column; align-content: auto; justify-content: flex-start; align-items: auto;">
+            <ui:VisualElement name="HealthBar" style="flex-grow: 0; flex-direction: row; margin-top: 24px;">
+                <ui:VisualElement name="Heart1" class="heart" style="flex-grow: 1; width: 50px; height: 50px;" />
+                <ui:VisualElement name="Heart2" class="heart" style="flex-grow: 1; width: 50px; height: 50px;" />
+                <ui:VisualElement name="Heart3" class="heart" style="flex-grow: 1; width: 50px; height: 50px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label name="PointsDisplay" text="000" />
+        <ui:VisualElement name="Filler" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

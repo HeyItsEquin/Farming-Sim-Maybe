@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 289075061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17694266, y: -0.21689197, z: 0.040587865}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,11 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc2ff5976341f3f88a6dd85f3dcc2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game: {fileID: 1511072571}
   circlePrefab: {fileID: 8099143582027567616, guid: 18c61dcb095cd578589e5a4ddad4a920, type: 3}
   circleContainer: {fileID: 1978979982}
   perfectIndicatorParticles: {fileID: 2029911609}
   goodIndicatorParticles: {fileID: 1362801625}
   missIndicatorParticles: {fileID: 1680378475}
+  minigameUi: {fileID: 959947863}
 --- !u!1001 &683484633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -297,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63d4ca3dba93f36391ecdc5009c384a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game: {fileID: 1511072571}
   circleManager: {fileID: 289075063}
 --- !u!1 &987177608
 GameObject:
@@ -360,7 +363,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 50
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -505,6 +508,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a0c1ea5f110b731f9b25b8460a0ef7b, type: 3}
+--- !u!1 &1511072570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1511072572}
+  - component: {fileID: 1511072571}
+  m_Layer: 0
+  m_Name: CircleMinigame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1511072571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511072570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f1acfd99be65219951ea0095f1c2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleManager: {fileID: 289075063}
+  minigameUI: {fileID: 959947863}
+--- !u!4 &1511072572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511072570}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1680378475 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8466596110613128221, guid: 3a0c1ea5f110b731f9b25b8460a0ef7b, type: 3}
@@ -614,8 +663,8 @@ Transform:
   m_GameObject: {fileID: 1978979982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17694266, y: -0.21689197, z: 0.040587865}
-  m_LocalScale: {x: 3.9875, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -686,11 +735,12 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1511072572}
   - {fileID: 987177611}
   - {fileID: 289075062}
   - {fileID: 1978979983}
   - {fileID: 1885759387}
   - {fileID: 959947862}
   - {fileID: 4660201519953257373}
-  - {fileID: 1502315757}
   - {fileID: 683484633}
+  - {fileID: 1502315757}

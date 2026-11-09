@@ -1,0 +1,15 @@
+.heart {
+    background-color: rgb(255, 0, 0);
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+.heart.lost {
+    background-color: rgb(87, 87, 87);
+}
+
+#PointsDisplay {
+    font-size: 28px;
+    margin-top: 14px;
+    -unity-font-style: bold;
+}

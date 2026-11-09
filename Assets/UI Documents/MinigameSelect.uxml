@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Documents/Stylesheets/MinigameSelect.uss?fileID=7433441132597879392&amp;guid=12c38f29aad345be091c47a9470fba90&amp;type=3#MinigameSelect" />
+    <ui:VisualElement name="Root">
+        <ui:VisualElement name="ButtonsContainer">
+            <ui:Button name="StartCircleMinigame" text="Circles" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
