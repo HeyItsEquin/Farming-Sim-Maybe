@@ -2,13 +2,8 @@ using UnityEngine;
 
 public class Lane : MonoBehaviour
 {
-    void Start()
+    public float GetX()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        return transform.localPosition.x;
     }
 }

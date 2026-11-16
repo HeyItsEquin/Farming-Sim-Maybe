@@ -1,57 +1,78 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Assertions;
-using System.Linq;
-using System;
 
-public class CircleMinigameUI : MonoBehaviour
+public class CircleMinigameUI : MenuScript
 {
     [SerializeField] CircleMinigame game;
 
-    [SerializeField] CircleManager circleManager;
+    VisualElement mainInterfaceContainer;
 
-    UIDocument document;
-    VisualElement root;
-    
     VisualElement healthBar;
-
     Label pointsDisplay;
 
-    void Start()
+    VisualElement victoryScreenContainer;
+
+    VisualElement victoryScreenTextElements;
+    Label victoryHeading;
+    Label victorySubheading;
+
+    Button victoryRetryButton;
+    Button victoryMainMenuButton;
+
+    VisualElement filler;
+    
+    protected override void OnRootReady()
     {
-        Assert.IsNotNull(game, "Must assign Game");
-        Assert.IsNotNull(circleManager, "Must assign Circle Manager");
-    }
+        ShowElement(mainInterfaceContainer);
+        HideElement(victoryScreenContainer);
 
-    void OnEnable()
-    {
-        document = GetComponent<UIDocument>();
-        root = document.rootVisualElement;
-
-        healthBar = root.Q<VisualElement>("HealthBar");
-
-        pointsDisplay = root.Q<Label>("PointsDisplay");
         pointsDisplay.text = $"{game.Points:000}";
-        game.pointsUpdated +=
-            (p) => pointsDisplay.text = $"{game.Points:000}";
+        game.pointsUpdated += (p) => pointsDisplay.text = $"{game.Points:000}";
+
+        SetScale(victoryScreenTextElements,0);
+
+        victoryHeading.RemoveFromClassList("end-screen-failure");
+        victoryHeading.RemoveFromClassList("end-screen-victory");
+
+        victoryRetryButton.clicked += () => game.Restart();
+        victoryMainMenuButton.clicked += () => game.ReturnToMainMenu();
+
+        ShowElement(filler);
     }
 
-    public void OnGameLost()
+    void ShowEndScreen(bool lost)
     {
-        UIHelper.HideElement(healthBar);
+        ShowElement(victoryScreenContainer);
+        SetScale(victoryScreenTextElements,1);
+        victorySubheading.text = $"Your final score: {game.Points}";
+        
+        SetEndScreenHeader(lost);
+    }
+
+    void SetEndScreenHeader(bool lost)
+    {
+        victoryHeading.RemoveFromClassList(lost ? "end-heading-victory" : "end-heading-failure");
+        victoryHeading.AddToClassList(lost ? "end-heading-failure" : "end-heading-victory");
+        victoryHeading.text = lost ? "You Failed!" : "You Won!";
+    }
+
+    public void OnGameEnd(bool lost)
+    {
+        HideElement(mainInterfaceContainer);
+        HideElement(filler);
+
+        ShowEndScreen(lost);
     }
 
     public void UpdateHearts()
     {
-        var children = healthBar.Children().ToList();
-        var indexed = children.Select((v,i) => new { Index = i, Value = v });
-
-        foreach (var item in indexed)
+        foreach (var (i, child) in healthBar.Children().ToList().WithIndex())
         {
-            if (item.Index >= game.CurrentHealth)
-                item.Value.AddToClassList("lost");
+            if (i >= game.CurrentHealth)
+                child.AddToClassList("lost");
             else
-                item.Value.RemoveFromClassList("lost");
+                child.RemoveFromClassList("lost");
         }
     }
 }

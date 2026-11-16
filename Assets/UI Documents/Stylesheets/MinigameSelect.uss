@@ -7,7 +7,7 @@
 
 #ButtonsContainer Button
 {
-    padding: 6px;
-    font-size: 14px;
+    padding: 16px;
+    font-size: 24px;
     margin: 4px 0px 4px 0px;
 }

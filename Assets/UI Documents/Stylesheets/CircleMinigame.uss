@@ -8,8 +8,61 @@
     background-color: rgb(87, 87, 87);
 }
 
+.nodisplay {
+    display: none;
+}
+
+.zero-scale {
+    scale: 0;
+}
+
+#Filler {
+    flex: 0 1;
+}
+
 #PointsDisplay {
     font-size: 28px;
     margin-top: 14px;
     -unity-font-style: bold;
+}
+
+#MainInterfaceContainer {
+    align-items: center;
+    justify-content: center;
+}
+
+#VictoryScreenContainer {
+    flex-direction: column;
+}
+
+#VictoryScreenTextElements {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: scale 0.6s ease-out;
+}
+
+#VictoryScreenButtons {
+    margin: 24px 0px 0px 0px;
+}
+
+.victory-button {
+    font-size: 24px;
+}
+
+.end-heading-victory {
+    color: #ffb000;
+}
+.end-heading-failure {
+    color: #b00600;
+}
+
+#VictoryHeading {
+    -unity-font-definition: url("project://database/Assets/Fonts/Ranchers-Regular.ttf?fileID=12800000&guid=d04ac0d9958d675deb7b0440a41ac4b1&type=3#Ranchers-Regular");
+    font-size: 80px;
+}
+
+#VictorySubheading {
+    -unity-font-definition: url("project://database/Assets/Fonts/RobotoMono.ttf?fileID=12800000&guid=b0c4b27f9629481c9bf502156f835520&type=3#RobotoMono");
+    font-size: 32px;
 }

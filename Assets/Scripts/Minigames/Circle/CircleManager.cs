@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Collections;
 
 using UnityRandom = UnityEngine.Random;
-using System.Data;
 
 public class CircleManager : MonoBehaviour
 {
@@ -16,10 +15,10 @@ public class CircleManager : MonoBehaviour
     [SerializeField] ParticleSystem perfectIndicatorParticles;
     [SerializeField] ParticleSystem goodIndicatorParticles;
     [SerializeField] ParticleSystem missIndicatorParticles;
-    
-    [SerializeField] CircleMinigameUI minigameUi;
 
     List<Circle> circles = new();
+
+    bool gameShouldEnd = false;
 
     int circleSpawnCount = 5;
     float circleDelay = 1.7f;
@@ -34,29 +33,29 @@ public class CircleManager : MonoBehaviour
         Assert.IsNotNull(circlePrefab, "Must assign Circle Prefab");
         Assert.IsNotNull(circleContainer, "Must assign Circle Container");
 
-        Assert.IsNotNull(perfectIndicatorParticles);
-        Assert.IsNotNull(goodIndicatorParticles);
-        Assert.IsNotNull(missIndicatorParticles);
-
-        Assert.IsNotNull(minigameUi);
-    }
-
-    void Update()
-    {
-        
+        Assert.IsNotNull(perfectIndicatorParticles, "Must assign perfectIndicatorParticles");
+        Assert.IsNotNull(goodIndicatorParticles, "Must assign goodIndicatorParticles");
+        Assert.IsNotNull(missIndicatorParticles, "Must assign missIndicatorParticles");
     }
 
     public void StartSpawning()
     {
+        ResetGameState();
         StartCoroutine(GameCoroutine());
     }
 
-    public void OnGameLost()
+    void ResetGameState()
     {
-        // Cleanup remaining circles
+        StopAllCoroutines();
         foreach (var c in circles)
             Destroy(c.gameObject);
         circles.Clear();
+        gameShouldEnd = false;        
+    }
+
+    public void OnGameEnd()
+    {
+        ResetGameState();
     }
 
     IEnumerator GameCoroutine()
@@ -66,6 +65,7 @@ public class CircleManager : MonoBehaviour
             SpawnCircle(GetRandomPoint());
             yield return new WaitForSeconds(circleDelay);
         }
+        gameShouldEnd = true;
     }
 
     Vector2 GetRandomPoint()
@@ -101,6 +101,7 @@ public class CircleManager : MonoBehaviour
     {
         var res = 0f;
         var obj = Instantiate(circlePrefab);
+        obj.transform.SetParent(circleContainer.transform);
 
         var c = obj.GetComponent<Circle>();
         if (c) res = c.Radius;
@@ -124,9 +125,19 @@ public class CircleManager : MonoBehaviour
                 game.LoseHealth();
 
             game.AddPoints(c.hitResult*200);
+
+            if (gameShouldEnd)
+                StartCoroutine(GameEndCoroutine());
         };
         circles.Add(circle);
         return circle;
+    }
+
+    IEnumerator GameEndCoroutine()
+    {
+        // TODO: Implement
+        yield return new WaitForSeconds(0.5f);
+        game.EndGame(false);
     }
 
     void ShowHitResultPopup(Circle c)

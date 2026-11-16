@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ImGuiNET;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
@@ -111,4 +112,23 @@ public class Player : MonoBehaviour
 
         UpdatePosition(currentLane+1);
     }
+
+    #if DEBUG
+    void OnEnable() => DebugUI.Add(this, "Player", DrawDebug);
+    void OnDisable() => DebugUI.Remove(this);
+
+    void DrawDebug()
+    {
+        ImGui.Text($"Lane: {currentLane}");
+        ImGui.Text($"In transition: {inLaneTransition}");
+
+        ImGui.Spacing();
+
+        if (ImGui.Button("Go to lane 0")) UpdatePosition(0);
+        ImGui.SameLine();
+        if (ImGui.Button("Go to last lane")) UpdatePosition(lanes.Count - 1);
+
+        ImGui.DragFloat("Transition time", ref laneTransitionDuration, 0.005f, 0.01f, 0.5f);
+    }
+    #endif
 }
